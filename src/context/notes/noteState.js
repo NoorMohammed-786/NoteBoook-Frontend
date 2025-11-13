@@ -30,6 +30,105 @@ const NoteState = (props) => {
     "tag": "savings",
     "date": "2025-10-30T05:47:09.998Z",
     "__v": 0
+  },
+  {
+    "_id": "6902fbdde84cf063e166fa7a",
+    "user": "6901da454a78b129d884a78e",
+    "title": "Noor 3",
+    "description": "Noor Mearr Bagu 2",
+    "tag": "savings",
+    "date": "2025-10-30T05:47:09.998Z",
+    "__v": 0
+  },
+  {
+    "_id": "6902fbdde84cf063e166fa7a",
+    "user": "6901da454a78b129d884a78e",
+    "title": "Noor 3",
+    "description": "Noor Mearr Bagu 2",
+    "tag": "savings",
+    "date": "2025-10-30T05:47:09.998Z",
+    "__v": 0
+  },
+  {
+    "_id": "6902fbdde84cf063e166fa7a",
+    "user": "6901da454a78b129d884a78e",
+    "title": "Noor 3",
+    "description": "Noor Mearr Bagu 2",
+    "tag": "savings",
+    "date": "2025-10-30T05:47:09.998Z",
+    "__v": 0
+  },
+  {
+    "_id": "6902fbdde84cf063e166fa7a",
+    "user": "6901da454a78b129d884a78e",
+    "title": "Noor 3",
+    "description": "Noor Mearr Bagu 2",
+    "tag": "savings",
+    "date": "2025-10-30T05:47:09.998Z",
+    "__v": 0
+  },
+  {
+    "_id": "6902fbdde84cf063e166fa7a",
+    "user": "6901da454a78b129d884a78e",
+    "title": "Noor 3",
+    "description": "Noor Mearr Bagu 2",
+    "tag": "savings",
+    "date": "2025-10-30T05:47:09.998Z",
+    "__v": 0
+  },
+  {
+    "_id": "6902fbdde84cf063e166fa7a",
+    "user": "6901da454a78b129d884a78e",
+    "title": "Noor 3",
+    "description": "Noor Mearr Bagu 2",
+    "tag": "savings",
+    "date": "2025-10-30T05:47:09.998Z",
+    "__v": 0
+  },
+  {
+    "_id": "6902fbdde84cf063e166fa7a",
+    "user": "6901da454a78b129d884a78e",
+    "title": "Noor 3",
+    "description": "Noor Mearr Bagu 2",
+    "tag": "savings",
+    "date": "2025-10-30T05:47:09.998Z",
+    "__v": 0
+  },
+  {
+    "_id": "6902fbdde84cf063e166fa7a",
+    "user": "6901da454a78b129d884a78e",
+    "title": "Noor 3",
+    "description": "Noor Mearr Bagu 2",
+    "tag": "savings",
+    "date": "2025-10-30T05:47:09.998Z",
+    "__v": 0
+  },
+  {
+    "_id": "6902fbdde84cf063e166fa7a",
+    "user": "6901da454a78b129d884a78e",
+    "title": "Noor 3",
+    "description": "Noor Mearr Bagu 2",
+    "tag": "savings",
+    "date": "2025-10-30T05:47:09.998Z",
+    "__v": 0
+  },
+  {
+    "_id": "6902fbdde84cf063e166fa7a",
+    "user": "6901da454a78b129d884a78e",
+    "title": "Noor 3",
+    "description": "Noor Mearr Bagu 2",
+    "tag": "savings",
+    "date": "2025-10-30T05:47:09.998Z",
+    "__v": 0
+  },
+  {
+    "_id": "6902fbdde84cf063e166fa7a",
+    "user": "6901da454a78b129d884a78e",
+    "title": "Noor 3",
+    "description": "Noor Mearr Bagu 2",
+    "tag": "savings",
+    "date": "2025-10-30T05:47:09.998Z",
+    "__v": 0
   }
 ];
 const [notes, setnotes] = useState(initialnotes);
