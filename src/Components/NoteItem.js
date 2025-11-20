@@ -1,7 +1,10 @@
 import React from "react";
+import noteContext from "../context/notes/notecontext";
 
-const noteItem = (props) => {
+const NoteItem = (props) => {
   const { note } = props;
+  const context = React.useContext(noteContext);
+  const {DeleteNote}=context;
   return (
     <div className="col-md-3 my-1">
       <div className="card" style={{ width: "18rem" }}>
@@ -11,7 +14,7 @@ const noteItem = (props) => {
             {note.description}</p>
             <div className="icons my-1">
               <button className="btn btn-danger">
-                <i className="fa-solid fa-trash"></i>
+                <i className="fa-solid fa-trash" onClick={()=>{DeleteNote(note._id)}}></i>
               </button>
               <button className="btn btn-warning mx-2">
                 <i className="fa-regular fa-pen-to-square"></i>
@@ -24,4 +27,4 @@ const noteItem = (props) => {
   );
 };
 
-export default noteItem;
+export default NoteItem;
