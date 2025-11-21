@@ -5,7 +5,12 @@ import AddNotes from "./AddNotes";
 
 const Notes = () => {
   const context = React.useContext(noteContext);
-  const { notes } = context;
+  const { notes,GetNotes,GetAllNotes } = context;
+  React.useEffect(() => {
+    GetNotes();
+    GetAllNotes();
+    // eslint-disable-next-line
+  }, []);
   return (
     <>
       <AddNotes />
