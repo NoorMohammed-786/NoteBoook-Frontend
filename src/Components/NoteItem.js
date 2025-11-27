@@ -2,7 +2,7 @@ import React from "react";
 import noteContext from "../context/notes/notecontext";
 
 const NoteItem = (props) => {
-  const { note } = props;
+  const { note,updatenote } = props;
   const context = React.useContext(noteContext);
   const { DeleteNote,UpdateNote } = context;
   return (
@@ -11,6 +11,7 @@ const NoteItem = (props) => {
         <div className="card-body">
           <h5 className="card-title">{note.title}</h5>
           <p className="card-text">{note.description}</p>
+          <p className="card-text">{note.tag}</p>
           <div className="icons my-1">
             <button className="btn btn-danger">
               <i
@@ -21,9 +22,7 @@ const NoteItem = (props) => {
               ></i>
             </button>
             <button className="btn btn-warning mx-2">
-              <i className="fa-regular fa-pen-to-square" onClick={()=>{
-                UpdateNote(note._id);
-              }}></i>
+              <i className="fa-regular fa-pen-to-square" onClick={()=>{updatenote(note)}}></i>
             </button>
           </div>
         </div>

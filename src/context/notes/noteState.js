@@ -21,6 +21,7 @@ const NoteState = (props) => {
       _id: "6902fbdde84cf063e166fa7a",
       user: "6901da454a78b129d884a78e",
       title: title,
+      tag: tag,
       description: description,
     };
     setnotes(notes.concat(note));
