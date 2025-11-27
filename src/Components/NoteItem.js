@@ -4,7 +4,7 @@ import noteContext from "../context/notes/notecontext";
 const NoteItem = (props) => {
   const { note,updatenote } = props;
   const context = React.useContext(noteContext);
-  const { DeleteNote,UpdateNote } = context;
+  const { DeleteNote } = context;
   return (
     <div className="col-md-3 my-1">
       <div className="card" style={{ width: "18rem" }}>

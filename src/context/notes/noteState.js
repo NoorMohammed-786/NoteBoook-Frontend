@@ -3,18 +3,8 @@ import NoteContext from "./notecontext";
 
 const NoteState = (props) => {
   const host = "http://localhost:5000";
-  const initialnotes = [
-    {
-      _id: "6902fbdde84cf1063e166fa7a",
-      user: "6901da454a78b129d884a78e",
-      title: "Noor 3",
-      description: "Noor Mearr Bagu 2",
-      tag: "savings",
-      date: "2025-10-30T05:47:09.998Z",
-      __v: 0,
-    },
-  ];
-  const [notes, setnotes] = useState(initialnotes);
+  
+  const [notes, setnotes] = useState("");
   const Addnote = async (title, description, tag) => {
    
     const response = await fetch(`${host}/api/notes/addnote`, {
@@ -27,8 +17,10 @@ const NoteState = (props) => {
       body: JSON.stringify({ title, description, tag }),
     });
     const note = await response.json();
-    setnotes(notes.concat(note));
-     console.log("Adding a new note", note);
+    // setnotes(notes.concat(note));
+    //  console.log("Adding a new note", note);
+    setnotes(prevNotes => [...prevNotes, note]);   // ← safest
+  console.log("Adding a new note:", note);
   };
 
   // const GetAllNotes = async () => {
@@ -59,9 +51,9 @@ const NoteState = (props) => {
     setnotes(json);
   };
 
-  const DeleteNote = async (id) => {
-    console.log("Deleting the note with id" + id);
-    const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+  const DeleteNote = async (_id) => {
+    console.log("Deleting the note with id" + _id);
+    const response = await fetch(`${host}/api/notes/deletenote/${_id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +64,7 @@ const NoteState = (props) => {
     const json = await response.json();
     console.log(json);
     const newNotes = notes.filter((note) => {
-      return note._id !== id;
+      return note._id !== _id;
     });
     setnotes(newNotes);
   };

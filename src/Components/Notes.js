@@ -90,6 +90,8 @@ const Notes = () => {
                     aria-describedby="emailHelp"
                     onChange={onchange}
                     value={anote.title}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-2">
@@ -103,6 +105,8 @@ const Notes = () => {
                     name="description"
                     onChange={onchange}
                     value={anote.description}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-2">
@@ -132,6 +136,7 @@ const Notes = () => {
                 type="button"
                 className="btn btn-primary"
                 onClick={handlechange}
+                 disabled={anote.title.length<5 || anote.description.length<5}
               >
                 Update
               </button>
@@ -139,8 +144,10 @@ const Notes = () => {
           </div>
         </div>
       </div>
-      <div className="row my-3">
+      <div className="row my-3 container">
         <h2>Your Notes</h2>
+        <div className="container mx-3">
+        {notes.length === 0 && <h2 style={{color:"red", fontStyle:"italic"}}>No notes to display</h2>}</div>
         {notes &&
           notes.map((note) => (
             <NoteItem
