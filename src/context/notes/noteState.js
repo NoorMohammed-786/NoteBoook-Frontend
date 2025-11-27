@@ -15,29 +15,33 @@ const NoteState = (props) => {
     },
   ];
   const [notes, setnotes] = useState(initialnotes);
-  const Addnote = (title, description, tag) => {
+  const Addnote = async (title, description, tag) => {
     console.log("Adding a new note");
-    const note = {
-      _id: "6902fbdde84cf063e166fa7a",
-      user: "6901da454a78b129d884a78e",
-      title: title,
-      tag: tag,
-      description: description,
-    };
+    const response = await fetch(`${host}/api/notes/addnote`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjkwMWRhNDU0YTc4YjEyOWQ4ODRhNzhlIn0sImlhdCI6MTc2MTgwMzE5Mn0.t8QWvfTmfKnNfwMowGSXsRJepW-qe8761YyuFqr1Rm0",
+      },
+      body: JSON.stringify({ title, description, tag }),
+    });
+    const note = await response.json(); 
     setnotes(notes.concat(note));
   };
 
-  const GetAllNotes = async () => {
-    //API Call
-    const response = await fetch(`${host}/api/notes/fetchnotesall`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const json = await response.json();
-    //setnotes(json);
-  };
+  // const GetAllNotes = async () => {
+  //   //API Call
+  //   const response = await fetch(`${host}/api/notes/fetchnotesall`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  //   const json = await response.json();
+  //   console.log(json);
+  //   //setnotes(json);
+  // };
 
   const GetNotes = async () => {
     //API Call
@@ -83,7 +87,7 @@ const NoteState = (props) => {
         Addnote,
         DeleteNote,
         UpdateNote,
-        GetAllNotes,
+        
         GetNotes,
       }}
     >
