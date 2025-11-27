@@ -5,23 +5,26 @@ import AddNotes from "./AddNotes";
 
 const Notes = () => {
   const context = React.useContext(noteContext);
-  const { notes, GetNotes,UpdateNote } = context;
+  const { notes, GetNotes, UpdateNote } = context;
   React.useEffect(() => {
     GetNotes();
-   
+
     // eslint-disable-next-line
   }, []);
   const ref = React.useRef(null);
   const refclose = React.useRef(null);
-  const [note, setnote] = React.useState({
+  const [anote, setnote] = React.useState({
+    _id: "",
     title: "",
     description: "",
     tag: "",
   });
   const updatenote = (currentnote) => {
     ref.current.click(); // open modal
+    //console.log("current note", currentnote);
 
     setnote({
+      _id: currentnote._id,
       title: currentnote.title,
       description: currentnote.description,
       tag: currentnote.tag,
@@ -29,12 +32,12 @@ const Notes = () => {
   };
 
   const onchange = (e) => {
-    setnote({ ...note, [e.target.name]: e.target.value });
+    setnote({ ...anote, [e.target.name]: e.target.value });
   };
   const handlechange = (e) => {
+    //console.log("updating the note", anote);
+    UpdateNote(anote._id, anote.title, anote.description, anote.tag);
     refclose.current.click(); // close modal
-    UpdateNote(note._id);
-   
   };
   return (
     <>
@@ -86,7 +89,7 @@ const Notes = () => {
                     name="title"
                     aria-describedby="emailHelp"
                     onChange={onchange}
-                    value={note.title}
+                    value={anote.title}
                   />
                 </div>
                 <div className="mb-2">
@@ -99,7 +102,7 @@ const Notes = () => {
                     id="Description"
                     name="description"
                     onChange={onchange}
-                    value={note.description}
+                    value={anote.description}
                   />
                 </div>
                 <div className="mb-2">
@@ -112,7 +115,7 @@ const Notes = () => {
                     id="tag"
                     name="tag"
                     onChange={onchange}
-                    value={note.tag}
+                    value={anote.tag}
                   />
                 </div>
               </form>
@@ -125,7 +128,11 @@ const Notes = () => {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary" onClick={handlechange}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handlechange}
+              >
                 Update
               </button>
             </div>
@@ -134,11 +141,14 @@ const Notes = () => {
       </div>
       <div className="row my-3">
         <h2>Your Notes</h2>
-        {notes.map((note) => {
-          return (
-            <NoteItem key={note._id} note={note} updatenote={updatenote} />
-          );
-        })}
+        {notes &&
+          notes.map((note) => (
+            <NoteItem
+              key={note._id || Math.random()}
+              note={note}
+              updatenote={updatenote}
+            />
+          ))}
       </div>
     </>
   );
