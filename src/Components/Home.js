@@ -1,11 +1,12 @@
 import { React } from "react";
 import Notes from "./Notes";
-import App from "./ref";
+
 
 const Home = (props) => {
+  
   return (
     <div>
-      <Notes />
+      <Notes showAlert={props.showAlert}/>
      
     </div>
   );

@@ -3,7 +3,8 @@ import noteContext from "../context/notes/notecontext";
 import NoteItem from "./NoteItem";
 import AddNotes from "./AddNotes";
 
-const Notes = () => {
+const Notes = (props) => {
+  
   const context = React.useContext(noteContext);
   const { notes, GetNotes, UpdateNote } = context;
   React.useEffect(() => {
@@ -38,10 +39,11 @@ const Notes = () => {
     //console.log("updating the note", anote);
     UpdateNote(anote._id, anote.title, anote.description, anote.tag);
     refclose.current.click(); // close modal
+    props.showAlert("Updated Successfully", "success");
   };
   return (
     <>
-      <AddNotes />
+      <AddNotes showAlert={props.showAlert}/>
       {/* Button that opens the modal */}
       <button
         type="button"
@@ -151,6 +153,7 @@ const Notes = () => {
         {notes &&
           notes.map((note) => (
             <NoteItem
+            showAlert={props.showAlert}
               key={note._id || Math.random()}
               note={note}
               updatenote={updatenote}
