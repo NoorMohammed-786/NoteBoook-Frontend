@@ -34,7 +34,7 @@ export default function Alert(props) {
         width: "100%",
         display: "flex",
        justifyContent: "center",
-        zIndex: 9999,
+       zIndex: 9999,
         pointerEvents: "none", // optional → allows clicks through alert area
       }}
     >

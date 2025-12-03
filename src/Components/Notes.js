@@ -2,24 +2,31 @@ import React from "react";
 import noteContext from "../context/notes/notecontext";
 import NoteItem from "./NoteItem";
 import AddNotes from "./AddNotes";
+import { useNavigate } from "react-router-dom";
 
 const Notes = (props) => {
-  
+  const showAlert = props.showAlert;
   const context = React.useContext(noteContext);
   const { notes, GetNotes, UpdateNote } = context;
-  React.useEffect(() => {
-    GetNotes();
-
-    // eslint-disable-next-line
-  }, []);
   const ref = React.useRef(null);
   const refclose = React.useRef(null);
+  const navigate = useNavigate();
   const [anote, setnote] = React.useState({
     _id: "",
     title: "",
     description: "",
     tag: "",
   });
+  React.useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      showAlert("Please login to access your notes", "danger");
+      navigate("/login");
+      return; // important: stop running GetNotes()
+    }
+
+    GetNotes();
+  }, []);
+
   const updatenote = (currentnote) => {
     ref.current.click(); // open modal
     //console.log("current note", currentnote);
@@ -39,11 +46,11 @@ const Notes = (props) => {
     //console.log("updating the note", anote);
     UpdateNote(anote._id, anote.title, anote.description, anote.tag);
     refclose.current.click(); // close modal
-    props.showAlert("Updated Successfully", "success");
+    showAlert("Updated Successfully", "success");
   };
   return (
     <>
-      <AddNotes showAlert={props.showAlert}/>
+      <AddNotes showAlert={showAlert} />
       {/* Button that opens the modal */}
       <button
         type="button"
@@ -138,7 +145,9 @@ const Notes = (props) => {
                 type="button"
                 className="btn btn-primary"
                 onClick={handlechange}
-                 disabled={anote.title.length<5 || anote.description.length<5}
+                disabled={
+                  anote.title.length < 5 || anote.description.length < 5
+                }
               >
                 Update
               </button>
@@ -149,11 +158,16 @@ const Notes = (props) => {
       <div className="row my-3 container">
         <h2>Your Notes</h2>
         <div className="container mx-3">
-        {notes.length === 0 && <h2 style={{color:"red", fontStyle:"italic"}}>No notes to display</h2>}</div>
+          {notes.length === 0 && (
+            <h2 style={{ color: "red", fontStyle: "italic" }}>
+              No notes to display
+            </h2>
+          )}
+        </div>
         {notes &&
           notes.map((note) => (
             <NoteItem
-            showAlert={props.showAlert}
+              showAlert={showAlert}
               key={note._id || Math.random()}
               note={note}
               updatenote={updatenote}
